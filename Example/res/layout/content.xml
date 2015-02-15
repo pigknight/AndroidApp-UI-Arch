@@ -1,0 +1,52 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <FrameLayout 
+        android:id="@+id/child_ui_container"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignParentTop="true"
+        android:layout_above="@+id/play_control_bar">
+        <!-- Category -->
+        <!-- AlbumList -->
+        <!-- MusicList -->
+    </FrameLayout>
+    
+    <RelativeLayout 
+        android:id="@+id/play_control_bar"
+        android:layout_width="match_parent"
+        android:layout_height="60dip"
+        android:layout_alignParentBottom="true"
+        android:clickable="true"
+        android:background="#dddddd">
+        <ImageView 
+            android:id="@+id/imageview1"
+            android:layout_width="50dip"
+            android:layout_height="50dip"
+            android:layout_alignParentLeft="true"
+            android:layout_marginLeft="20dip"
+            android:layout_centerVertical="true"
+            android:scaleType="fitXY"
+            android:src="@drawable/music"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@+id/imageview1"
+            android:layout_marginLeft="10dip"
+            android:layout_centerVertical="true"
+            android:textSize="20sp"
+            android:textColor="#000000"
+            android:text="Music Name..."></TextView>
+        <ImageView 
+            android:layout_width="50dip"
+            android:layout_height="50dip"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="20dip"
+            android:layout_centerVertical="true"
+            android:scaleType="fitXY"
+            android:src="@drawable/pause"/>"
+    </RelativeLayout>
+
+</RelativeLayout>

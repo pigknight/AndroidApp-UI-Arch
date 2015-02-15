@@ -1,0 +1,59 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#ffffff">
+
+    <LinearLayout 
+        android:id="@+id/top_bar"
+        android:layout_width="match_parent"
+        android:layout_height="50dip"
+        android:layout_alignParentTop="true"
+        android:orientation="horizontal">
+        <TextView 
+            android:id="@+id/btn_local"
+            android:layout_width="0dip"
+            android:layout_weight="1"
+            android:layout_height="match_parent"
+            android:layout_gravity="center_vertical"
+            android:clickable="true"
+            android:focusable="true"
+            android:gravity="center"
+            android:textColor="@color/btn_fg_color"
+            android:textSize="20sp"
+            android:text="Local"/>
+        <TextView 
+            android:id="@+id/btn_network"
+            android:layout_width="0dip"
+            android:layout_weight="1"
+            android:layout_height="match_parent"
+            android:layout_gravity="center_vertical"
+            android:clickable="true"
+            android:focusable="true"
+            android:gravity="center"
+            android:textColor="@color/btn_fg_color"
+            android:textSize="20sp"
+            android:text="Network"/>
+        <TextView 
+            android:id="@+id/btn_favorite"
+            android:layout_width="0dip"
+            android:layout_weight="1"
+            android:layout_height="match_parent"
+            android:layout_gravity="center_vertical"
+            android:clickable="true"
+            android:focusable="true"
+            android:gravity="center"
+            android:textColor="@color/btn_fg_color"
+            android:textSize="20sp"
+            android:text="Favorite"/>
+    </LinearLayout>
+    
+    <FrameLayout
+        android:id="@+id/child_ui_container"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/top_bar">
+        
+    </FrameLayout>"
+
+</RelativeLayout>

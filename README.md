@@ -9,6 +9,7 @@ Feature:
 4>.Support UI switching animation;
 5>.Synchronizing the Activity's onPause() and onResume()(optional);
 6>.Flexible customization,More rapid,lightweight, flexible and convenient compared with the Activity or Fragment;
+
 #############################
 Continuously updated ...
 #############################

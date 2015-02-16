@@ -13,6 +13,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.app.Activity;
+import android.content.res.Configuration;
 import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.View;
@@ -49,6 +50,28 @@ public class MainActivity extends Activity {
 		
 		
 		initUI();
+	}
+	
+	@Override
+	public void onPause(){
+		super.onPause();
+		
+		Example.getInstance().dispatchOnPause();
+	}
+	
+	@Override
+	public void onResume(){
+		super.onPause();
+		
+		Example.getInstance().dispatchOnResume();
+	}
+	
+	@Override
+	public void onConfigurationChanged(Configuration newConfig){
+		
+		Example.getInstance().dispatchOrientationChanged(newConfig);
+		
+		super.onConfigurationChanged(newConfig);
 	}
 
 	@Override

@@ -1,6 +1,7 @@
 package com.adnroid.pigknight.example.ui;
 
 import android.content.Context;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.ViewGroup;
@@ -74,6 +75,18 @@ public class MusicList extends UI {
 		// TODO Auto-generated method stub
 		
 	}
+	
+	@Override
+	public void onPause() {
+		// TODO Auto-generated method stub
+		Log.i(TAG,"===========================================onPause()");
+	}
+	
+	@Override
+	public void onResume() {
+		// TODO Auto-generated method stub
+		Log.i(TAG,"===========================================onResume()");
+	}
 
 	@Override
 	public boolean onKeyEvent(KeyEvent event) {
@@ -84,5 +97,9 @@ public class MusicList extends UI {
 			return true;
 		}
 		return false;
+	}
+	
+	public void setTitle(String title){
+		((TextView)mContainer.findViewById(R.id.title)).setText("Music List - "+title);
 	}
 }

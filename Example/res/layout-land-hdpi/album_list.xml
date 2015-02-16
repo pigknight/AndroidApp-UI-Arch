@@ -1,0 +1,101 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="#ffffff">
+
+    <include 
+        layout="@layout/title_bar"/>
+    
+    <LinearLayout 
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal">
+        <LinearLayout 
+	        android:layout_width="1dip"
+	        android:layout_weight="1"
+	        android:layout_height="wrap_content"
+	        android:layout_gravity="top"
+	        android:orientation="vertical">
+	        <TextView
+	            android:id="@+id/album_1"
+		        android:layout_width="wrap_content"
+		        android:layout_height="wrap_content"
+		        android:clickable="true"
+		        android:textColor="@color/btn_fg_color"
+		        android:textSize="23sp"
+		        android:text="Album 1."></TextView>
+	        <TextView
+	            android:id="@+id/album_2"
+		        android:layout_width="wrap_content"
+		        android:layout_height="wrap_content"
+		        android:clickable="true"
+		        android:textColor="@color/btn_fg_color"
+		        android:textSize="23sp"
+		        android:text="Album 2. "></TextView>
+	        <TextView
+	            android:id="@+id/album_3"
+		        android:layout_width="wrap_content"
+		        android:layout_height="wrap_content"
+		        android:clickable="true"
+		        android:textColor="@color/btn_fg_color"
+		        android:textSize="23sp"
+		        android:text="Album 3. "></TextView>
+	        <TextView
+	            android:id="@+id/album_4"
+		        android:layout_width="wrap_content"
+		        android:layout_height="wrap_content"
+		        android:clickable="true"
+		        android:textColor="@color/btn_fg_color"
+		        android:textSize="23sp"
+		        android:text="Album 4. "></TextView>
+	    </LinearLayout>
+	    
+        <View
+            android:layout_width="1dip"
+            android:layout_height="match_parent"
+            android:background="#888888"></View>
+	    
+        <LinearLayout 
+	        android:layout_width="1dip"
+	        android:layout_weight="1"
+	        android:layout_height="wrap_content"
+	        android:layout_gravity="top"
+	        android:orientation="vertical">
+	        <TextView
+	            android:id="@+id/music_1"
+		        android:layout_width="wrap_content"
+		        android:layout_height="wrap_content"
+		        android:clickable="true"
+		        android:textColor="@color/btn_fg_color"
+		        android:textSize="23sp"
+		        android:text="music 1"></TextView>
+	        <TextView
+	            android:id="@+id/music_2"
+		        android:layout_width="wrap_content"
+		        android:layout_height="wrap_content"
+		        android:clickable="true"
+		        android:textColor="@color/btn_fg_color"
+		        android:textSize="23sp"
+		        android:text="music 2"></TextView>
+	        <TextView
+	            android:id="@+id/music_3"
+		        android:layout_width="wrap_content"
+		        android:layout_height="wrap_content"
+		        android:clickable="true"
+		        android:textColor="@color/btn_fg_color"
+		        android:textSize="23sp"
+		        android:text="music 3"></TextView>
+	        <TextView
+	            android:id="@+id/music_4"
+		        android:layout_width="wrap_content"
+		        android:layout_height="wrap_content"
+		        android:clickable="true"
+		        android:textColor="@color/btn_fg_color"
+		        android:textSize="23sp"
+		        android:text="music 4"></TextView>
+	    </LinearLayout>
+    </LinearLayout>
+
+</LinearLayout>

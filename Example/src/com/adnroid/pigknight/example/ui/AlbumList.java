@@ -1,6 +1,7 @@
 package com.adnroid.pigknight.example.ui;
 
 import android.content.Context;
+import android.content.res.Configuration;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.ViewGroup;
@@ -60,7 +61,11 @@ public class AlbumList extends UI {
 			@Override
 			public void onClick(View v) {
 				// TODO Auto-generated method stub
-				Content.getInstance().switchChildUI(Content.CHILD_ID_MUSIC_LIST, false);
+				Configuration mConfiguration = mContext.getResources().getConfiguration(); //获取设置的配置信息
+				if( mConfiguration.orientation == mConfiguration.ORIENTATION_PORTRAIT ){
+					Content.getInstance().switchChildUI(Content.CHILD_ID_MUSIC_LIST, false);
+					MusicList.getInstance().setTitle("Album 1");
+				}
 			}
 		});
 		
@@ -69,7 +74,11 @@ public class AlbumList extends UI {
 			@Override
 			public void onClick(View v) {
 				// TODO Auto-generated method stub
-				Content.getInstance().switchChildUI(Content.CHILD_ID_MUSIC_LIST, false);
+				Configuration mConfiguration = mContext.getResources().getConfiguration(); //获取设置的配置信息
+				if( mConfiguration.orientation == mConfiguration.ORIENTATION_PORTRAIT ){
+					Content.getInstance().switchChildUI(Content.CHILD_ID_MUSIC_LIST, false);
+					MusicList.getInstance().setTitle("Album 2");
+				}
 			}
 		});
 		
@@ -78,7 +87,11 @@ public class AlbumList extends UI {
 			@Override
 			public void onClick(View v) {
 				// TODO Auto-generated method stub
-				Content.getInstance().switchChildUI(Content.CHILD_ID_MUSIC_LIST, false);
+				Configuration mConfiguration = mContext.getResources().getConfiguration(); //获取设置的配置信息
+				if( mConfiguration.orientation == mConfiguration.ORIENTATION_PORTRAIT ){
+					Content.getInstance().switchChildUI(Content.CHILD_ID_MUSIC_LIST, false);
+					MusicList.getInstance().setTitle("Album 3");
+				}
 			}
 		});
 		
@@ -87,7 +100,11 @@ public class AlbumList extends UI {
 			@Override
 			public void onClick(View v) {
 				// TODO Auto-generated method stub
-				Content.getInstance().switchChildUI(Content.CHILD_ID_MUSIC_LIST, false);
+				Configuration mConfiguration = mContext.getResources().getConfiguration(); //获取设置的配置信息
+				if( mConfiguration.orientation == mConfiguration.ORIENTATION_PORTRAIT ){
+					Content.getInstance().switchChildUI(Content.CHILD_ID_MUSIC_LIST, false);
+					MusicList.getInstance().setTitle("Album 4");
+				}
 			}
 		});
 	}
@@ -107,7 +124,7 @@ public class AlbumList extends UI {
 	@Override
 	public void onHide() {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
@@ -119,5 +136,10 @@ public class AlbumList extends UI {
 			return true;
 		}
 		return false;
+	}
+	
+	@Override
+	public boolean isOrientationDependent(){
+		return true;
 	}
 }

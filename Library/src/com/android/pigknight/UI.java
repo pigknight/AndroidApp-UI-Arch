@@ -252,7 +252,7 @@ public abstract class UI {
    	    mChildUIViewAnimator = null;
     }
     
-    public final void dispatchOnShow(){
+    private final void dispatchOnShow(){
     	if( mCurChildKey != null && !mCurChildKey.equals("") ){
     	    UI curShow = mChildUIMap.get( mCurChildKey );
     	    if( curShow != null ){
@@ -263,7 +263,7 @@ public abstract class UI {
     	onShow();
     }
     
-    public final void dispatchOnHide(){
+    private final void dispatchOnHide(){
     	if( mCurChildKey != null && !mCurChildKey.equals("") ){
     	    UI curShow = mChildUIMap.get( mCurChildKey );
     	    if( curShow != null ){
@@ -352,12 +352,16 @@ public abstract class UI {
     	switchChildUI( childKey,releaseOld,inAnimation,outAnimation);
     }
     
-    public void switchChildUI( String childKey ,boolean releaseOld,Animation inAnimation,Animation outAnimation){    	
+    public void switchChildUI( String childKey ,boolean releaseOld,Animation inAnimation,Animation outAnimation){
+    	switchChildUI( childKey, releaseOld, inAnimation, outAnimation, false);
+    }
+    
+    private void switchChildUI( String childKey ,boolean releaseOld,Animation inAnimation,Animation outAnimation,boolean forceSwitch){    	
     	if( mChildUIViewAnimator == null ){
     		throw new RuntimeException(TAG + ": mChildUIContainer was null.");
     	}
     	
-    	if( mCurChildKey != null && mCurChildKey.equals(childKey) )
+    	if( mCurChildKey != null && mCurChildKey.equals(childKey) && !forceSwitch)
     		return;
     	
     	if( mPreviousUI != null ){
@@ -416,27 +420,31 @@ public abstract class UI {
     		mPreviousUI = null;
     }
     
-    public final void notifyOrientationChanged(Configuration newConfig){
-    	if( isOrientationDependent() ){
-    		//release old
-    		this.onHide();
-    		this.onFinalize();
-    		
-    		//create new 
-    		this.Initialize();
-    	}
-    	
+    public final void dispatchOrientationChanged(Configuration newConfig){
     	if( mChildUIMap.size() > 0 ){
     		Set<String> childrenKeySet = mChildUIMap.keySet();
     		for( String childKey : childrenKeySet ){
     			UI child = mChildUIMap.get(childKey);
-    			if( child != null && child instanceof UI )
-    			    child.notifyOrientationChanged(newConfig);
+    			if( child != null && child instanceof UI ){
+    				if( child.isOrientationDependent() ){
+    					//release old
+    	    			child.onHide();
+    	    			child.onFinalize();
+    	        		
+    	        		//create new 
+    	    			child.Initialize();
+    				}
+    			    child.dispatchOrientationChanged(newConfig);
+    			}
     		}
     	}
     	
-    	if( this.mCurChildKey != null )
-    	    this.switchChildUI(this.mCurChildKey, false,mChildUIViewAnimator.getInAnimation(),mChildUIViewAnimator.getOutAnimation());
+    	if( this.mCurChildKey != null ){
+    		UI curChild = mChildUIMap.get(this.mCurChildKey);
+    		if( curChild != null && curChild.isOrientationDependent() ){
+        		this.switchChildUI(this.mCurChildKey, false,mChildUIViewAnimator.getInAnimation(),mChildUIViewAnimator.getOutAnimation(),true);
+    		}
+    	}
     }
     
     public final String getCurrentChildKey(){

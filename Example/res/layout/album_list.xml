@@ -18,7 +18,7 @@
 	        android:clickable="true"
 	        android:textColor="@color/btn_fg_color"
 	        android:textSize="23sp"
-	        android:text="Album 1"></TextView>
+	        android:text="Album 1. click to music list"></TextView>
         <TextView
             android:id="@+id/album_2"
 	        android:layout_width="wrap_content"
@@ -26,7 +26,7 @@
 	        android:clickable="true"
 	        android:textColor="@color/btn_fg_color"
 	        android:textSize="23sp"
-	        android:text="Album 2"></TextView>
+	        android:text="Album 2. click to music list"></TextView>
         <TextView
             android:id="@+id/album_3"
 	        android:layout_width="wrap_content"
@@ -34,7 +34,7 @@
 	        android:clickable="true"
 	        android:textColor="@color/btn_fg_color"
 	        android:textSize="23sp"
-	        android:text="Album 3"></TextView>
+	        android:text="Album 3. click to music list"></TextView>
         <TextView
             android:id="@+id/album_4"
 	        android:layout_width="wrap_content"
@@ -42,7 +42,7 @@
 	        android:clickable="true"
 	        android:textColor="@color/btn_fg_color"
 	        android:textSize="23sp"
-	        android:text="Album 4"></TextView>
+	        android:text="Album 4. click to music list"></TextView>
     </LinearLayout>
 
 </RelativeLayout>

@@ -347,8 +347,12 @@ public abstract class UI {
     }
     
     public void switchChildUI( String childKey ,boolean releaseOld,int inAnimRes,int outAnimRes){
-    	Animation inAnimation = AnimationUtils.loadAnimation(mContext, inAnimRes);
-    	Animation outAnimation = AnimationUtils.loadAnimation(mContext, outAnimRes);
+    	Animation inAnimation = null;
+    	if( inAnimRes > 0 )
+    	    inAnimation = AnimationUtils.loadAnimation(mContext, inAnimRes);
+    	Animation outAnimation = null;
+    	if( outAnimRes > 0 )
+    		outAnimation = AnimationUtils.loadAnimation(mContext, outAnimRes);
     	switchChildUI( childKey,releaseOld,inAnimation,outAnimation);
     }
     

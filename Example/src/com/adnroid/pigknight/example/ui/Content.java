@@ -54,7 +54,7 @@ public class Content extends UI {
 			@Override
 			public void onClick(View v) {
 				// TODO Auto-generated method stub
-				Example.getInstance().switchChildUI(Example.CHILD_ID_PLAYING, false,R.anim.push_bottom_in,R.anim.push_top_out);
+				Example.getInstance().switchChildUI(Example.CHILD_ID_PLAYING, false);
 			}
 		});
 	}

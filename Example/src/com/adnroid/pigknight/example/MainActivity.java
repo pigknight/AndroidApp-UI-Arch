@@ -129,7 +129,7 @@ public class MainActivity extends Activity {
 		Example.getInstance().registerChildUI(Playing.getInstance(), Example.CHILD_ID_PLAYING);
 		
 		//set default Animation
-		Example.getInstance().setDefaultAnimation(R.anim.push_right_in, R.anim.push_left_out);
+		Example.getInstance().setDefaultAnimation(R.anim.push_bottom_in, R.anim.push_top_out);
 		Content.getInstance().setDefaultAnimation(R.anim.push_right_in, R.anim.push_left_out);
 		Category.getInstance().setDefaultAnimation(R.anim.push_right_in, R.anim.push_left_out);
 		

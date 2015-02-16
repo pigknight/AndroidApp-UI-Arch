@@ -26,13 +26,22 @@ public class Category extends UI {
 				return;
 			switch( v.getId() ){
 			case R.id.btn_local:
-				Category.getInstance().switchChildUI(Category.CHILD_ID_LOCAL, false);
+				Category.getInstance().switchChildUI(Category.CHILD_ID_LOCAL, false,R.anim.push_left_in,R.anim.push_right_out);
 				break;
 			case R.id.btn_network:
+				if( mLastView != null ){
+				    if( mLastView.getId() == R.id.btn_local ){
+				    	Category.getInstance().switchChildUI(Category.CHILD_ID_NETWORK, false,R.anim.push_right_in,R.anim.push_left_out);
+				    	break;
+				    }else if( mLastView.getId() == R.id.btn_favorite ){
+				    	Category.getInstance().switchChildUI(Category.CHILD_ID_NETWORK, false,R.anim.push_left_in,R.anim.push_right_out);
+				    	break;
+				    }
+				}
 				Category.getInstance().switchChildUI(Category.CHILD_ID_NETWORK, false);
 				break;
 			case R.id.btn_favorite:
-				Category.getInstance().switchChildUI(Category.CHILD_ID_FAVORITE, false);
+				Category.getInstance().switchChildUI(Category.CHILD_ID_FAVORITE, false,R.anim.push_right_in,R.anim.push_left_out);
 				break;
 			}
 			

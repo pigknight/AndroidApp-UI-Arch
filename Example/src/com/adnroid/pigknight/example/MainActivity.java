@@ -128,6 +128,11 @@ public class MainActivity extends Activity {
 		    Content.getInstance().registerChildUI(MusicList.getInstance(), Content.CHILD_ID_MUSIC_LIST);
 		Example.getInstance().registerChildUI(Playing.getInstance(), Example.CHILD_ID_PLAYING);
 		
+		//set default Animation
+		Example.getInstance().setDefaultAnimation(R.anim.push_right_in, R.anim.push_left_out);
+		Content.getInstance().setDefaultAnimation(R.anim.push_right_in, R.anim.push_left_out);
+		Category.getInstance().setDefaultAnimation(R.anim.push_right_in, R.anim.push_left_out);
+		
 		//set default ui
 		Example.getInstance().switchChildUI(Example.CHILD_ID_CONTENT, false);
 		Content.getInstance().switchChildUI(Content.CHILD_ID_CATEGORY, false);

@@ -51,7 +51,7 @@ public class Playing extends UI {
 			@Override
 			public void onClick(View v) {
 				// TODO Auto-generated method stub
-				Example.getInstance().switchChildUI(Example.CHILD_ID_CONTENT, true);
+				Example.getInstance().switchChildUI(Example.CHILD_ID_CONTENT, true,R.anim.push_left_in,R.anim.push_right_out);
 			}
 		});
 	}
@@ -78,7 +78,7 @@ public class Playing extends UI {
 	public boolean onKeyEvent(KeyEvent event) {
 		// TODO Auto-generated method stub
 		if( event.getKeyCode() == KeyEvent.KEYCODE_BACK ){
-			Example.getInstance().switchChildUI(Example.CHILD_ID_CONTENT, true);
+			Example.getInstance().switchChildUI(Example.CHILD_ID_CONTENT, true,R.anim.push_left_in,R.anim.push_right_out);
 			
 			return true;
 		}

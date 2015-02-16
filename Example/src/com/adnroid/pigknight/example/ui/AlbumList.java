@@ -52,7 +52,7 @@ public class AlbumList extends UI {
 			@Override
 			public void onClick(View v) {
 				// TODO Auto-generated method stub
-				Content.getInstance().switchChildUI(Content.CHILD_ID_CATEGORY, true);
+				Content.getInstance().switchChildUI(Content.CHILD_ID_CATEGORY, true,R.anim.push_left_in,R.anim.push_right_out);
 			}
 		});
 		
@@ -131,7 +131,7 @@ public class AlbumList extends UI {
 	public boolean onKeyEvent(KeyEvent event) {
 		// TODO Auto-generated method stub
 		if( event.getKeyCode() == KeyEvent.KEYCODE_BACK ){
-			Content.getInstance().switchChildUI(Content.CHILD_ID_CATEGORY, true);
+			Content.getInstance().switchChildUI(Content.CHILD_ID_CATEGORY, true,R.anim.push_left_in,R.anim.push_right_out);
 			
 			return true;
 		}

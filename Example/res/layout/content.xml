@@ -20,7 +20,7 @@
         android:layout_height="60dip"
         android:layout_alignParentBottom="true"
         android:clickable="true"
-        android:background="#dddddd">
+        android:background="#aaaaaa">
         <ImageView 
             android:id="@+id/imageview1"
             android:layout_width="50dip"

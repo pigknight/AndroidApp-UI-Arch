@@ -9,7 +9,8 @@
         android:layout_width="match_parent"
         android:layout_height="50dip"
         android:layout_alignParentTop="true"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        android:background="#aaaaaa">
         <TextView 
             android:id="@+id/btn_local"
             android:layout_width="0dip"

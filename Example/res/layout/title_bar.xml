@@ -3,7 +3,7 @@
     android:id="@+id/title_bar"
     android:layout_width="match_parent"
     android:layout_height="60dip"
-    android:background="#eeeeee">
+    android:background="#aaaaaa">
     <View
         android:id="@+id/h_dividing_line_1"
         android:layout_width="match_parent"

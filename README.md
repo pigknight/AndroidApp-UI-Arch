@@ -104,7 +104,7 @@ Example.getInstance().switchChildUI(Example.CHILD_ID_CONTENT, false);
 Content.getInstance().switchChildUI(Content.CHILD_ID_CATEGORY, false);
 ```
 	
-Other, dispatch key Event,onPause(),onResume(),onConfigurationChanged()
+Other, In you Activity, dispatch key Event,onPause(),onResume(),onConfigurationChanged()
 
 ```java
 @Override

@@ -34,6 +34,7 @@ Example.initInstance(this, true);
         AlbumList.initInstance(this, false);
         MusicList.initInstance(this, false);
     Playing.initInstance(this, false);
+```
 
 Third. Register the UI to a static structure.
 
@@ -47,6 +48,7 @@ Example.getInstance().registerChildUI(Content.getInstance(),Example.CHILD_ID_CON
     Content.getInstance().registerChildUI(AlbumList.getInstance(), Content.CHILD_ID_ALBUM_LIST);
     Content.getInstance().registerChildUI(MusicList.getInstance(), Content.CHILD_ID_MUSIC_LIST);
 Example.getInstance().registerChildUI(Playing.getInstance(), Example.CHILD_ID_PLAYING);
+```
 
 Fourth,set default Animation
 
@@ -55,6 +57,7 @@ Fourth,set default Animation
 Example.getInstance().setDefaultAnimation(R.anim.push_bottom_in, R.anim.push_top_out);
 Content.getInstance().setDefaultAnimation(R.anim.push_right_in, R.anim.push_left_out);
 Category.getInstance().setDefaultAnimation(R.anim.push_right_in, R.anim.push_left_out);
+```
 
 Fifth,set default ui
 
@@ -62,7 +65,8 @@ Fifth,set default ui
 //set default ui
 Example.getInstance().switchChildUI(Example.CHILD_ID_CONTENT, false);
 Content.getInstance().switchChildUI(Content.CHILD_ID_CATEGORY, false);
-		
+```
+	
 Other, dispatch key Event,onPause(),onResume(),onConfigurationChanged()
 
 ```java
@@ -109,6 +113,7 @@ public void onConfigurationChanged(Configuration newConfig){
 	
 	super.onConfigurationChanged(newConfig);
 }
+```
 
 
 #############################

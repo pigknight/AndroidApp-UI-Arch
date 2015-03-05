@@ -21,6 +21,43 @@ Usage:
 
 First,you must be implements the all child UI which having a separate logic function derived from the base class 'UI';
 
+```java
+public class Example extends UI {
+  private final static String TAG = Example.class.getSimpleName();
+	
+	protected static Example mInstance = null;
+	
+	public static final String CHILD_ID_CONTENT = "1";
+	public static final String CHILD_ID_PLAYING = "2";
+	
+	protected Example(Context context, boolean isRoot) {
+		
+		super(context, isRoot);
+		// TODO Auto-generated constructor stub
+	}
+	
+	public static void initInstance(Context paramContext,boolean isRoot){
+	    mInstance = new Example(paramContext, isRoot);
+	}
+	
+	public static Example getInstance(){
+	    if (mInstance == null)
+	      throw new RuntimeException(TAG+": Must called the initInstance() before to call getInstance().");
+	    return mInstance;
+	}
+
+	@Override
+	public ViewGroup onCreateContainer() {
+		// TODO Auto-generated method stub
+		return (ViewGroup)((MainActivity)mContext).getMainContainer();
+	}
+
+  ................................	
+  ................................
+  ................................
+}
+```
+
 Second, Init all child UI
 
 ```java

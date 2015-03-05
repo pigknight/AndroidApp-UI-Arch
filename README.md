@@ -10,7 +10,7 @@ Feature:
 5>.Synchronizing the Activity's onPause() and onResume()(optional);
 6>.Flexible customization,More rapid,lightweight, flexible and convenient compared with the Activity or Fragment;
 
-![screenshot](https://github.com/pigknight/AndroidApp-UI-Arch/blob/master/20080328122630185.gif "screenshot")
+![screenshot](https://github.com/pigknight/AndroidApp-UI-Arch/blob/master/demo_animation.gif "screenshot")
 
 #############################
 Continuously updated ...

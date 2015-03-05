@@ -73,7 +73,7 @@ Example.initInstance(this, true);
     Playing.initInstance(this, false);
 ```
 
-Third. Register the UI to a static structure.
+Third. Register the UI to a static tree structure.
 
 ```java
 //register

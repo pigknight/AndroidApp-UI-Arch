@@ -96,7 +96,7 @@ Content.getInstance().setDefaultAnimation(R.anim.push_right_in, R.anim.push_left
 Category.getInstance().setDefaultAnimation(R.anim.push_right_in, R.anim.push_left_out);
 ```
 
-Fifth,set default ui
+Fifth,set default ui and  this is the way to switch the child UI.
 
 ```java
 //set default ui

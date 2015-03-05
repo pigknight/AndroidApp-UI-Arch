@@ -19,7 +19,7 @@ Example:
 Usage:
 -----
 
-First,you must be implements the all child UI which having a separate logic function derived from the base class 'UI';
+First,you must be implements the all child UI which having a separate logic function & derived from the base class 'UI';
 
 ```java
 public class Example extends UI {

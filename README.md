@@ -62,7 +62,7 @@ Second, Init all child UI
 
 ```java
 //init 
-Example.initInstance(this, true);
+Example.initInstance(this/*Context*/, true);//This is the Root UI
     Content.initInstance(this, false);
         Category.initInstance(this, false);
         	CategoryLocal.initInstance(this, false);

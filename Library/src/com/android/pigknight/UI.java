@@ -77,11 +77,14 @@ public abstract class UI {
 			// TODO Auto-generated method stub
 			if( mPreviousUI != null ){
 				boolean releaseOld = false;
-				Boolean release_old = (Boolean)mPreviousUI.getContainer().getTag();
-				if( release_old != null )
-					releaseOld = release_old;
-				if( releaseOld )
-    	    	    mPreviousUI.dispatchRelease();
+				View container = mPreviousUI.getContainer();
+				if( container != null ){
+					Boolean release_old = (Boolean)container.getTag();
+					if( release_old != null )
+						releaseOld = release_old;
+					if( releaseOld )
+	    	    	    mPreviousUI.dispatchRelease();
+				}
     	    }
 		}
 

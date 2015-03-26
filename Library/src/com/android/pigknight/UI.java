@@ -225,8 +225,7 @@ public abstract class UI {
     		Collection<UI> children = mChildUIMap.values();
     		for( UI child : children ){
     			if( child != null && child instanceof UI ){
-    				child.onHide();
-    				child.onFinalize();
+    				child.dispatchRelease();
     			}
     		}
     	}
@@ -366,6 +365,14 @@ public abstract class UI {
     private void switchChildUI( String childKey ,boolean releaseOld,Animation inAnimation,Animation outAnimation,boolean forceSwitch){    	
     	if( mChildUIViewAnimator == null ){
     		throw new RuntimeException(TAG + ": mChildUIContainer was null.");
+    	}
+    	
+    	if( childKey == null ){
+    		UI currentUI = mChildUIMap.get( mCurChildKey );
+    		if( currentUI != null )
+    			currentUI.dispatchRelease();
+    		
+    		return;
     	}
     	
     	if( mCurChildKey != null && mCurChildKey.equals(childKey) && !forceSwitch)

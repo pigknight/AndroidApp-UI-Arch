@@ -475,5 +475,17 @@ public abstract class UI {
     	else
     		return false;
     }
+    
+    public final void run( Runnable r){
+    	if( mContainer != null ){
+    		mContainer.post( r );
+    	}
+    }
+    
+    public final void runDelayed( Runnable r,long delayMillis){
+    	if( mContainer != null ){
+    		mContainer.postDelayed(r, delayMillis);
+    	}
+    }
 }
 

@@ -125,7 +125,7 @@ public abstract class UI {
     
     public void setDefaultAnimation(int inAnimRes,int outAnimRes){
     	mDefaultInAnimation = AnimationUtils.loadAnimation(mContext, inAnimRes);
-    	mDefaultOutAnimation = AnimationUtils.loadAnimation(mContext, outAnimRes);;
+    	mDefaultOutAnimation = AnimationUtils.loadAnimation(mContext, outAnimRes);
     }
     
     public void setDefaultAnimation(Animation in,Animation out){
@@ -230,7 +230,8 @@ public abstract class UI {
     		}
     	}
     	
-    	mChildUIViewAnimator.removeAllViews();
+    	if( mChildUIViewAnimator != null )
+    	    mChildUIViewAnimator.removeAllViews();
     	mCurChildKey = null;
     }
     
@@ -245,6 +246,9 @@ public abstract class UI {
     	onHide();
 
 	    onFinalize();
+	    
+	    if( mChildUIViewAnimator != null )
+	        mChildUIViewAnimator.removeAllViews();
 	
 	    mIsInitialized = false;
 	    mCurChildKey = null;
@@ -273,7 +277,7 @@ public abstract class UI {
     	    }
     	}
     	
-    	onShow();
+    	onHide();
     }
     
     public final void dispatchOnPause(){

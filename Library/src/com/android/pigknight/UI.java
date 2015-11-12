@@ -40,6 +40,8 @@ public abstract class UI {
     
     private static final int MSG_ID_RUNNABLE = 1;
     
+    private boolean mSwitchingUI = false;
+    
     //The show stack in order to back.   *************
     private Stack<UI> mShowStack = null;
     
@@ -65,6 +67,8 @@ public abstract class UI {
 			    mNextUI.dispatchOnShow();
 			    mNextUI = null;
 			}
+			
+			mSwitchingUI = false;
 		}
 
 		@Override
@@ -95,6 +99,8 @@ public abstract class UI {
 	    	    	    mPreviousUI.dispatchRelease();
 				}
     	    }
+			
+			mSwitchingUI = false;
 		}
 
 		@Override
@@ -394,10 +400,13 @@ public abstract class UI {
     	switchChildUI( childKey, releaseOld, inAnimation, outAnimation, false);
     }
     
-    private void switchChildUI( String childKey ,boolean releaseOld,Animation inAnimation,Animation outAnimation,boolean forceSwitch){    	
+    private boolean switchChildUI( String childKey ,boolean releaseOld,Animation inAnimation,Animation outAnimation,boolean forceSwitch){
+    	if( mSwitchingUI )
+    		return false;
+    	
     	if( mChildUIViewAnimator == null ){
     		new Exception(TAG + ": mChildUIContainer was null.").printStackTrace();
-    		return;//throw new RuntimeException(TAG + ": mChildUIContainer was null.");
+    		return false;//throw new RuntimeException(TAG + ": mChildUIContainer was null.");
     	}
     	
     	if( childKey == null ){
@@ -407,11 +416,14 @@ public abstract class UI {
     			currentUI.dispatchRelease();
     		}
     		
-    		return;
+    		return false;
     	}
     	
     	if( mCurChildKey != null && mCurChildKey.equals(childKey) && !forceSwitch)
-    		return;
+    		return false;
+    	
+    	//Start switch UI
+    	mSwitchingUI = true;
     	
     	if( mPreviousUI != null ){
     	    mChildUIViewAnimator.removeView(mPreviousUI.getContainer());
@@ -430,6 +442,7 @@ public abstract class UI {
     		
     		mChildUIViewAnimator.addView( mNextUI.getContainer(),mChildUIViewAnimator.getChildCount(),new ViewGroup.LayoutParams(LayoutParams.MATCH_PARENT,LayoutParams.MATCH_PARENT));
     		
+    		//Show In
     		if( inAnimation == null )
     			inAnimation = mDefaultInAnimation;
     		
@@ -439,6 +452,7 @@ public abstract class UI {
     		}else
     			mChildUIViewAnimator.setInAnimation(null);
     		
+    		//Show Out
     		if( outAnimation == null )
     			outAnimation = mDefaultOutAnimation;
     		
@@ -447,8 +461,11 @@ public abstract class UI {
     		    mChildUIViewAnimator.setOutAnimation(outAnimation);
     		    if( mPreviousUI != null )
     		        mPreviousUI.getContainer().setTag(releaseOld);
-    		}else{
+    		}else
     			mChildUIViewAnimator.setOutAnimation(null);
+    		
+    		//Out
+    		if( outAnimation == null ){
     			if( mPreviousUI != null ){
     				mPreviousUI.dispatchOnHide();
     				if( releaseOld )
@@ -460,14 +477,27 @@ public abstract class UI {
     		
     		mChildUIViewAnimator.showNext();
     		
+    		//In
     		if( inAnimation == null ){
     			if( mNextUI != null ){
 				    mNextUI.dispatchOnShow();
 				    mNextUI = null;
 				}
     		}
-    	}else
+    		
+    		//None Animation
+    		if( outAnimation == null && inAnimation == null ){
+    			mSwitchingUI = false;
+    		}
+    		
+    		return true;
+    	}else{
     		mPreviousUI = null;
+    		
+    		mSwitchingUI = false;
+    		
+    		return false;
+    	}
     }
     
     public final void dispatchOrientationChanged(Configuration newConfig){
@@ -537,4 +567,5 @@ public abstract class UI {
     	}
     }
 }
+
 

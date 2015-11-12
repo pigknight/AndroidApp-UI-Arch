@@ -6,6 +6,8 @@ import java.util.Set;
 import java.util.Stack;
 import android.content.Context;
 import android.content.res.Configuration;
+import android.os.Handler;
+import android.os.Message;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.ViewGroup;
@@ -32,6 +34,11 @@ public abstract class UI {
     
     //Application Context
     protected Context mContext = null;
+    
+    //
+    private Handler mHandler = null;
+    
+    private static final int MSG_ID_RUNNABLE = 1;
     
     //The show stack in order to back.   *************
     private Stack<UI> mShowStack = null;
@@ -76,6 +83,8 @@ public abstract class UI {
 		public void onAnimationEnd(Animation animation) {
 			// TODO Auto-generated method stub
 			if( mPreviousUI != null ){
+				mPreviousUI.dispatchOnHide();
+				
 				boolean releaseOld = false;
 				View container = mPreviousUI.getContainer();
 				if( container != null ){
@@ -215,6 +224,21 @@ public abstract class UI {
 	    	 }
     	 }
     	
+    	 mHandler = new Handler() {
+	        @Override
+	        public void handleMessage(Message msg) {
+	            super.handleMessage(msg);
+	            switch (msg.what) {
+	                case MSG_ID_RUNNABLE:
+	                	Runnable r = (Runnable)msg.obj;
+	                	if( r != null ){
+	                		r.run();
+	                	}
+	                	break;
+	            }
+	        }
+    	 };
+    	 
     	 onInitialize();
     	 
     	 mIsInitialized = true;
@@ -225,6 +249,7 @@ public abstract class UI {
     		Collection<UI> children = mChildUIMap.values();
     		for( UI child : children ){
     			if( child != null && child instanceof UI ){
+    				child.dispatchOnHide();
     				child.dispatchRelease();
     			}
     		}
@@ -242,9 +267,12 @@ public abstract class UI {
     	    	curShow.dispatchRelease();
     	    }
     	}
-    	
-    	onHide();
 
+    	if( mHandler != null ){
+    		mHandler.removeMessages(MSG_ID_RUNNABLE);
+    		mHandler = null;
+    	}
+    	
 	    onFinalize();
 	    
 	    if( mChildUIViewAnimator != null )
@@ -368,13 +396,16 @@ public abstract class UI {
     
     private void switchChildUI( String childKey ,boolean releaseOld,Animation inAnimation,Animation outAnimation,boolean forceSwitch){    	
     	if( mChildUIViewAnimator == null ){
-    		throw new RuntimeException(TAG + ": mChildUIContainer was null.");
+    		new Exception(TAG + ": mChildUIContainer was null.").printStackTrace();
+    		return;//throw new RuntimeException(TAG + ": mChildUIContainer was null.");
     	}
     	
     	if( childKey == null ){
     		UI currentUI = mChildUIMap.get( mCurChildKey );
-    		if( currentUI != null )
+    		if( currentUI != null ){
+    			currentUI.dispatchOnHide();
     			currentUI.dispatchRelease();
+    		}
     		
     		return;
     	}
@@ -419,6 +450,7 @@ public abstract class UI {
     		}else{
     			mChildUIViewAnimator.setOutAnimation(null);
     			if( mPreviousUI != null ){
+    				mPreviousUI.dispatchOnHide();
     				if( releaseOld )
 	    	    	    mPreviousUI.dispatchRelease();
 	    	    }
@@ -447,6 +479,11 @@ public abstract class UI {
     				if( child.isOrientationDependent() ){
     					//release old
     	    			child.onHide();
+    	    			
+    	    			if( mHandler != null ){
+    	    	    		mHandler.removeMessages(MSG_ID_RUNNABLE);
+    	    	    		mHandler = null;
+    	    	    	}
     	    			child.onFinalize();
     	        		
     	        		//create new 
@@ -469,6 +506,14 @@ public abstract class UI {
     	return mCurChildKey;
     }
     
+    public final UI getCurrentChild(){
+    	if( this.mCurChildKey != null ){
+    		return mChildUIMap.get(this.mCurChildKey);
+    	}
+    	
+    	return null;
+    }
+    
     public final  boolean isInitialized(){
     	return mIsInitialized;
     }
@@ -481,14 +526,14 @@ public abstract class UI {
     }
     
     public final void run( Runnable r){
-    	if( mContainer != null ){
-    		mContainer.post( r );
+    	if( mHandler != null ){
+    		mHandler.sendMessage(mHandler.obtainMessage(MSG_ID_RUNNABLE, r));
     	}
     }
     
     public final void runDelayed( Runnable r,long delayMillis){
-    	if( mContainer != null ){
-    		mContainer.postDelayed(r, delayMillis);
+    	if( mHandler != null ){
+    		mHandler.sendMessageDelayed(mHandler.obtainMessage(MSG_ID_RUNNABLE, r),delayMillis);
     	}
     }
 }
